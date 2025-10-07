@@ -8,25 +8,17 @@ SPREADSHEET_ID = '171LrxIb7IhCnYTP3rV7WaUGp0_mBaO2pX9cS0va6JJs'
 WORKSHEET_NAME = 'SEI'
 
 #teste de gcp_service
-st.set_page_config(page_title="Teste Secrets", layout="wide")
-st.title("Teste de Acesso a Secrets")
+st.set_page_config(page_title="Teste Simples Secrets", layout="wide")
+st.title("Teste de Acesso a Secret Simples")
 
 try:
-    # Tenta acessar o secret
-    secret_content = st.secrets["gcp_service_account"]
-    st.success("Secret 'gcp_service_account' acessado com sucesso!")
-    # Opcional: mostrar um pedaço do secret para confirmar que é o certo (NÃO FAÇA ISSO EM PRODUÇÃO)
-    # st.write(str(secret_content)[:100] + "...")
+    secret_value = st.secrets["teste_simples"]
+    st.success(f"Secret 'teste_simples' acessado com sucesso! Valor: {secret_value}")
 except KeyError:
-    st.error("Erro: Secret 'gcp_service_account' NÃO encontrado.")
+    st.error("Erro: Secret 'teste_simples' NÃO encontrado.")
     st.info("Verifique a configuração na seção 'Secrets' do Streamlit Cloud.")
 except Exception as e:
     st.error(f"Ocorreu um erro inesperado ao acessar o secret: {e}")
-
-# Remova ou comente o restante do seu código do dashboard por enquanto
-# @st.cache_data(ttl=600)
-# def load_data():
-# ...
 
 """
 # --- Função para Carregar Dados (com cache para performance) ---
@@ -125,3 +117,4 @@ if not df_sei.empty:
 else:
     st.warning("Não foi possível exibir o dashboard pois os dados não foram carregados.")
 """
+
